@@ -3,36 +3,36 @@
 #include <string.h>
 #include <unistd.h>
 
-int hasName();
+int temNome();
 void menu();
-void optionsMenu();
-void welcome();
-void setName();
-void home();
+void opcoesMenu();
+void bemVindo();
+void colocarNome();
+void casa();
 
-int options; //Global variable to options
-char name[50] = ""; //Global variable to name with null initial value
+int opcoes; //Global variable to options
+char nome[50] = ""; //Global variable to name with null initial value
 
 int main(){
-    while(!hasName()){
-        home();
+    while(!temNome()){
+        casa();
     }
     while(1){
-        welcome();
+        bemVindo();
     }
     return 0;
 }
 
-int hasName(){
-    for(int i = 0;name[i] != '\0'; i++){
-        if(name[i] != ' '){
+int temNome(){
+    for(int i = 0;nome[i] != '\0'; i++){
+        if(nome[i] != ' '){
             return 1;
         }
     }
     return 0;
 }
 
-void home(){
+void casa(){
     while(1){
         system("clear");
 
@@ -49,7 +49,7 @@ void home(){
         printf("                        2.Iniciar               3.Opcoes\n\n");
         printf("Escolha uma opcao:");
 
-        if(scanf("%i",  &options) != 1){
+        if(scanf("%i",  &opcoes) != 1){
             system("clear");
 
             while(getchar() != '\n');
@@ -59,7 +59,7 @@ void home(){
 
             continue;
         }
-        else if(options < 1 || options > 3){
+        else if(opcoes < 1 || opcoes > 3){
             system("clear");
 
             printf("Opcao invalida!\n");
@@ -68,27 +68,27 @@ void home(){
             continue;
         }
 
-        switch (options){
+        switch (opcoes){
         case 1:
-            setName();
+            colocarNome();
             break;
         case 2:
-            if(strlen(name) == 0){
+            if(strlen(nome) == 0){
 
                 system("clear");
 
                 printf("\nDigite seu nome para iniciar o quiz:");
-                scanf(" %[^\n]s", name);
+                scanf(" %[^\n]s", nome);
             }
             break;
         case 3:
-            optionsMenu();
+            opcoesMenu();
             break;
         }
     }
 }
 
-void welcome(){
+void bemVindo(){
     while(1){
         system("clear");
 
@@ -101,11 +101,11 @@ void welcome(){
         printf("   \\ \\_______\\____\\_\\  \\ \\__\\               \\ \\_____  \\ \\_______\\ \\__\\_______ \\ \n");
         printf("    \\|_______|\\_________\\|__|                \\|___| \\__\\|_______|\\|__|\\|_______| \n");
         printf("             \\|_________|                          \\|__|                         \n");
-        printf("\n\nBem vindo %s!\n\n", name);
+        printf("\n\nBem vindo %s!\n\n", nome);
         printf("                        1.Iniciar               2.Opcoes\n\n");
         printf("Escolha uma opcao:");
 
-        if(scanf("%i", &options) != 1){
+        if(scanf("%i", &opcoes) != 1){
             system("clear");
 
             while(getchar() != '\n');
@@ -115,7 +115,7 @@ void welcome(){
 
             continue;
         }
-        else if(options < 1 || options > 2){
+        else if(opcoes < 1 || opcoes > 2){
             system("clear");
 
             printf("Opcao invalida!\n");
@@ -124,25 +124,25 @@ void welcome(){
             continue;
         }
 
-        switch (options){
+        switch (opcoes){
         case 1:
             menu();
             break;
         case 2:
-            optionsMenu();
+            opcoesMenu();
             break;
         }
     }
 }
 
-void setName(){
+void colocarNome(){
     system("clear");
 
     printf("\nDigite seu nome:");
-    scanf(" %[^\n]s", name);
+    scanf(" %[^\n]s", nome);
 }
 
-void optionsMenu(){
+void opcoesMenu(){
     system("clear");
 
     printf("\n");
@@ -157,9 +157,9 @@ void optionsMenu(){
     printf("\n\nOpcoes do quiz\n\n");
     printf("Em desenvolvimento...\n");
     printf("1. Voltar\n");
-    scanf("%i", &options);
+    scanf("%i", &opcoes);
 
-    switch (options){
+    switch (opcoes){
     case 1:
         break;
     default:
@@ -167,7 +167,7 @@ void optionsMenu(){
 
         printf("Opcao invalida!\n");
         sleep(3);
-        optionsMenu();
+        opcoesMenu();
         break;
     }
 }
@@ -189,9 +189,9 @@ void menu(){
     printf("2. Linguagem CSS\n");
     printf("3. Adivinhas\n");
     printf("4. Voltar\n");
-    scanf("%i", &options);
+    scanf("%i", &opcoes);
 
-    switch (options){
+    switch (opcoes){
     case 4:
         break;
     

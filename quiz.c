@@ -3,6 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 
+int hasName(); //
 void menu();
 void optionsMenu();
 void welcome();
@@ -13,19 +14,25 @@ int options; //Global variable to options
 char name[50] = ""; //Global variable to name with null initial value
 
 int main(){
+    while(!hasName()){
+        home();
+    }
     while(1){
-        if(strlen(name) == 0){
-            home();
-        }
-        else{
-            welcome();
+        welcome();
+    }
+    return 0;
+}
+
+int hasName(){
+    for(int i = 0;name[i] != '\0'; i++){
+        if(name[i] != ' '){
+            return 1;
         }
     }
     return 0;
 }
 
 void home(){
-    
     system("clear");
 
     printf("\n");
@@ -60,6 +67,7 @@ void home(){
         break;
     default:
         system("clear");
+
         printf("Opcao invalida!\n");
         sleep(3);
         home();
@@ -68,7 +76,6 @@ void home(){
 }
 
 void welcome(){
-
     system("clear");
 
     printf("\n");
@@ -94,6 +101,7 @@ void welcome(){
         break;
     default:
         system("clear");
+        
         printf("Opcao invalida!\n");
         sleep(3);
         welcome();
@@ -109,7 +117,6 @@ void setName(){
 }
 
 void optionsMenu(){
-
     system("clear");
 
     printf("\n");
@@ -131,6 +138,7 @@ void optionsMenu(){
         break;
     default:
         system("clear");
+
         printf("Opcao invalida!\n");
         sleep(3);
         optionsMenu();
@@ -139,7 +147,6 @@ void optionsMenu(){
 }
 
 void menu(){
-
     system("clear");
 
     printf("\n");
@@ -164,6 +171,7 @@ void menu(){
     
     default:
         system("clear");
+
         printf("Opcao invalida!\n");
         sleep(3);
         menu();

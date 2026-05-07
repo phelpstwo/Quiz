@@ -3,7 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 
-int hasName(); //
+int hasName();
 void menu();
 void optionsMenu();
 void welcome();
@@ -33,79 +33,105 @@ int hasName(){
 }
 
 void home(){
-    system("clear");
-
-    printf("\n");
-    printf(" ___       ________  ________             ________  ___  ___  ___  ________      \n");
-    printf("|\\  \\     |\\   ____\\|\\   __  \\           |\\   __  \\|\\  \\|\\  \\|\\  \\|\\_____  \\     \n");
-    printf("\\ \\  \\    \\ \\  \\___|\\ \\  \\|\\  \\ _________\\ \\  \\|\\  \\ \\  \\\\  \\ \\  \\|___/  /|    \n");
-    printf(" \\ \\  \\    \\ \\_____  \\ \\   ____\\_________\\ \\  \\\\  \\ \\  \\\\  \\ \\  \\   /  / /    \n");
-    printf("  \\ \\  \\____\\|____|\\  \\ \\  \\___\\|_________|\\ \\  \\\\  \\ \\  \\\\  \\ \\  \\ /  /_/__   \n");
-    printf("   \\ \\_______\\____\\_\\  \\ \\__\\               \\ \\_____  \\ \\_______\\ \\__\\_______ \\ \n");
-    printf("    \\|_______|\\_________\\|__|                \\|___| \\__\\|_______|\\|__|\\|_______| \n");
-    printf("             \\|_________|                          \\|__|                         \n");
-    printf("\n1. Escrever seu nome.\n\n");
-    printf("                        2.Iniciar               3.Opcoes\n\n");
-    printf("Escolha uma opcao:");
-    scanf("%i", &options);
-
-    switch (options){
-    case 1:
-        setName();
-        break;
-    case 2:
-        if(strlen(name) == 0){
-
-            system("clear");
-
-            printf("\nDigite seu nome para iniciar o quiz:");
-            scanf(" %[^\n]s", name);
-        }
-        break;
-    case 3:
-        optionsMenu();
-        break;
-    default:
+    while(1){
         system("clear");
 
-        printf("Opcao invalida!\n");
-        sleep(3);
-        home();
-        break;
+        printf("\n");
+        printf(" ___       ________  ________             ________  ___  ___  ___  ________      \n");
+        printf("|\\  \\     |\\   ____\\|\\   __  \\           |\\   __  \\|\\  \\|\\  \\|\\  \\|\\_____  \\     \n");
+        printf("\\ \\  \\    \\ \\  \\___|\\ \\  \\|\\  \\ _________\\ \\  \\|\\  \\ \\  \\\\  \\ \\  \\|___/  /|    \n");
+        printf(" \\ \\  \\    \\ \\_____  \\ \\   ____\\_________\\ \\  \\\\  \\ \\  \\\\  \\ \\  \\   /  / /    \n");
+        printf("  \\ \\  \\____\\|____|\\  \\ \\  \\___\\|_________|\\ \\  \\\\  \\ \\  \\\\  \\ \\  \\ /  /_/__   \n");
+        printf("   \\ \\_______\\____\\_\\  \\ \\__\\               \\ \\_____  \\ \\_______\\ \\__\\_______ \\ \n");
+        printf("    \\|_______|\\_________\\|__|                \\|___| \\__\\|_______|\\|__|\\|_______| \n");
+        printf("             \\|_________|                          \\|__|                         \n");
+        printf("\n1. Escrever seu nome.\n\n");
+        printf("                        2.Iniciar               3.Opcoes\n\n");
+        printf("Escolha uma opcao:");
+
+        if(scanf("%i",  &options) != 1){
+            system("clear");
+
+            while(getchar() != '\n');
+
+            printf("Entrada invalida!\n");
+            sleep(2);
+
+            continue;
+        }
+        else if(options < 1 || options > 3){
+            system("clear");
+
+            printf("Opcao invalida!\n");
+            sleep(2);
+
+            continue;
+        }
+
+        switch (options){
+        case 1:
+            setName();
+            break;
+        case 2:
+            if(strlen(name) == 0){
+
+                system("clear");
+
+                printf("\nDigite seu nome para iniciar o quiz:");
+                scanf(" %[^\n]s", name);
+            }
+            break;
+        case 3:
+            optionsMenu();
+            break;
+        }
     }
 }
 
 void welcome(){
-    system("clear");
-
-    printf("\n");
-    printf(" ___       ________  ________             ________  ___  ___  ___  ________      \n");
-    printf("|\\  \\     |\\   ____\\|\\   __  \\           |\\   __  \\|\\  \\|\\  \\|\\  \\|\\_____  \\     \n");
-    printf("\\ \\  \\    \\ \\  \\___|\\ \\  \\|\\  \\ _________\\ \\  \\|\\  \\ \\  \\\\  \\ \\  \\|___/  /|    \n");
-    printf(" \\ \\  \\    \\ \\_____  \\ \\   ____\\_________\\ \\  \\\\  \\ \\  \\\\  \\ \\  \\   /  / /    \n");
-    printf("  \\ \\  \\____\\|____|\\  \\ \\  \\___\\|_________|\\ \\  \\\\  \\ \\  \\\\  \\ \\  \\ /  /_/__   \n");
-    printf("   \\ \\_______\\____\\_\\  \\ \\__\\               \\ \\_____  \\ \\_______\\ \\__\\_______ \\ \n");
-    printf("    \\|_______|\\_________\\|__|                \\|___| \\__\\|_______|\\|__|\\|_______| \n");
-    printf("             \\|_________|                          \\|__|                         \n");
-    printf("\n\nBem vindo %s!\n\n", name);
-    printf("                        1.Iniciar               2.Opcoes\n\n");
-    printf("Escolha uma opcao:");
-    scanf("%i", &options);
-
-    switch (options){
-    case 1:
-        menu();
-        break;
-    case 2:
-        optionsMenu();
-        break;
-    default:
+    while(1){
         system("clear");
-        
-        printf("Opcao invalida!\n");
-        sleep(3);
-        welcome();
-        break;
+
+        printf("\n");
+        printf(" ___       ________  ________             ________  ___  ___  ___  ________      \n");
+        printf("|\\  \\     |\\   ____\\|\\   __  \\           |\\   __  \\|\\  \\|\\  \\|\\  \\|\\_____  \\     \n");
+        printf("\\ \\  \\    \\ \\  \\___|\\ \\  \\|\\  \\ _________\\ \\  \\|\\  \\ \\  \\\\  \\ \\  \\|___/  /|    \n");
+        printf(" \\ \\  \\    \\ \\_____  \\ \\   ____\\_________\\ \\  \\\\  \\ \\  \\\\  \\ \\  \\   /  / /    \n");
+        printf("  \\ \\  \\____\\|____|\\  \\ \\  \\___\\|_________|\\ \\  \\\\  \\ \\  \\\\  \\ \\  \\ /  /_/__   \n");
+        printf("   \\ \\_______\\____\\_\\  \\ \\__\\               \\ \\_____  \\ \\_______\\ \\__\\_______ \\ \n");
+        printf("    \\|_______|\\_________\\|__|                \\|___| \\__\\|_______|\\|__|\\|_______| \n");
+        printf("             \\|_________|                          \\|__|                         \n");
+        printf("\n\nBem vindo %s!\n\n", name);
+        printf("                        1.Iniciar               2.Opcoes\n\n");
+        printf("Escolha uma opcao:");
+
+        if(scanf("%i", &options) != 1){
+            system("clear");
+
+            while(getchar() != '\n');
+
+            printf("Entrada invalida!\n");
+            sleep(2);
+
+            continue;
+        }
+        else if(options < 1 || options > 2){
+            system("clear");
+
+            printf("Opcao invalida!\n");
+            sleep(2);
+
+            continue;
+        }
+
+        switch (options){
+        case 1:
+            menu();
+            break;
+        case 2:
+            optionsMenu();
+            break;
+        }
     }
 }
 
